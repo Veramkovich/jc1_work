@@ -15,15 +15,35 @@ public class Hello {
         System.out.println();
         System.out.println("Hello World " + args[0]);
 
-        JFrame jFrame = new JFrame("Hello Java");
-        jFrame.setSize(800, 600);
+        Car $myCar = null;
+        $myCar = new Car();
 
-        JTextPane jTextPane = new JTextPane();
-        jTextPane.setText("I LOVE JAVA");
+        System.out.println(new Car().getPrice());
 
-        jFrame.add(jTextPane);
+        $myCar.setPrice(20_000_000);
+        System.out.println($myCar.getPrice());
+        System.out.println($myCar.getModel().length());
+    }
 
-        jFrame.setVisible(true);
+}
+
+class Car {
+
+    int price;
+    String model = new String();
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int newPrice) {
+        System.out.println("new price=" + newPrice);
+        price = newPrice;
+        System.out.println("car price=" + price);
+    }
+
+    public String getModel() {
+        return model;
     }
 
 }
