@@ -1,7 +1,9 @@
 package my.people;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
@@ -19,12 +21,11 @@ public class Main {
         System.out.println(myMan2.getAge());
         System.out.println(myMan1.getAge());
 
-        Thread.sleep(10_000);
+        /*Thread.sleep(10_000);
         for (int i = 0; i < 1_000_000; i++) {
             list.add(new Man(i));
             if (i < 10_000) Thread.sleep(1);
-        }
-
+        }*/
     }
 }
 
