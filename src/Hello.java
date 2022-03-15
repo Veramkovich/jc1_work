@@ -1,5 +1,3 @@
-import javax.swing.*;
-
 public class Hello {
 
     // This is name of the man

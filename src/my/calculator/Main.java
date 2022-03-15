@@ -1,9 +1,11 @@
 package my.calculator;
 
+//import java.util.Scanner;
+
 import java.util.Scanner;
 
 public class Main {
-
+    //my.calculator.Main
     public static void main(String[] args) {
         int operationCount = 0;
         while (operationCount < 10) {
@@ -18,7 +20,7 @@ public class Main {
     private static Arguments readArguments() {
         //Abstract level 2
         System.out.println("Please enter first number: ");
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new java.util.Scanner(System.in);
         int firstNumber = scanner.nextInt();
 
         System.out.println("Enter operation: ");
