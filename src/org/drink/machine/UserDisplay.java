@@ -27,8 +27,8 @@ public class UserDisplay {
             if (scanner.hasNext(productNumberPattern)) {
                 isCorrectValue = true;
                 productNumber = scanner.nextInt();
-                scanner.close();
             }
+            scanner.nextLine();
         }
         return productNumber;
     }
