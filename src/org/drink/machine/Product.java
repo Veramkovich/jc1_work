@@ -28,4 +28,8 @@ public class Product {
         return count;
     }
 
+    public void decreaseCount() {
+        count--;
+    }
+
 }

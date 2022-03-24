@@ -9,7 +9,7 @@ public class UserDisplay {
             int i = productNumber - 1;
             if (products[i] == null || products[i].getCount() <= 0) continue;
             System.out.println("[" + productNumber + "] " + products[i].getName()
-                    + " " + products[i].getPrice() );
+                    + " " + products[i].getPrice());
         }
     }
 
@@ -31,5 +31,21 @@ public class UserDisplay {
             scanner.nextLine();
         }
         return productNumber;
+    }
+
+    public void printPaymentPrompt(String productName, double price) {
+        System.out.println("Product: " + productName + " price: " + price);
+        System.out.println("Please pay with your bank card");
+    }
+
+    public void printPaymentResult(boolean payResult) {
+        String res = payResult ? "Payment complete" : "Payment error";
+        System.out.println(res);
+    }
+
+    public void printPurchaseResult(boolean result) {
+        String res = result ? "Please take your product" : "Product not available";
+        System.out.println(res);
+        System.out.println();
     }
 }

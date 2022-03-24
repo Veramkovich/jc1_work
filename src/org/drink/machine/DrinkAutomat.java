@@ -13,10 +13,12 @@ public class DrinkAutomat {
     }
 
     public void work() {
-        showProducts();
-        Product selectedProduct = selectProduct();
-        payProduct(selectedProduct);
-        giveProduct(selectedProduct);
+        while (true) {
+            showProducts();
+            Product selectedProduct = selectProduct();
+            payProduct(selectedProduct);
+            if (!giveProduct(selectedProduct)) break;
+        }
     }
 
     private void showProducts() {
@@ -24,16 +26,25 @@ public class DrinkAutomat {
     }
 
     private Product selectProduct() {
-        userDisplay.promptSelectProduct(); // option 2
+        userDisplay.promptSelectProduct();
         int productNumber = userDisplay.readProductNumber();
-        System.out.println("Product number: " + productNumber); //debug
-        return null;
+        return productStorage.getProductByNumber(productNumber);
     }
 
-    private void payProduct(Product selectedProduct) {
+    private boolean payProduct(Product selectedProduct) {
+        String productName = selectedProduct.getName();
+        double price = selectedProduct.getPrice();
+        userDisplay.printPaymentPrompt(productName, price);
+        //TODO: call payment interface
+        boolean payResult = true;
+        userDisplay.printPaymentResult(payResult);
+        return payResult;
     }
 
-    private void giveProduct(Product selectedProduct) {
+    private boolean giveProduct(Product selectedProduct) {
+        boolean result = productStorage.removeProduct(selectedProduct);
+        userDisplay.printPurchaseResult(result);
+        return result;
     }
 
 }
