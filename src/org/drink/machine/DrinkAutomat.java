@@ -1,7 +1,8 @@
 package org.drink.machine;
 
-import java.util.Scanner;
+import my.Version;
 
+@Version(number = "2.0")
 public class DrinkAutomat {
 
     private final UserDisplay userDisplay;
