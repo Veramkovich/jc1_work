@@ -2,6 +2,9 @@ package org.drink.machine;
 
 import my.Version;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Version(number = "2.0")
 public class DrinkAutomat {
 
@@ -11,12 +14,12 @@ public class DrinkAutomat {
     public DrinkAutomat() {
         this.userDisplay = new UserDisplay();
 
-        Beverage[] products = new Beverage[5];
-        products[0] = new Beverage("Coca-Cola", 2.00, 5, 0.33);
-        products[1] = new Beverage("Fanta", 2.00, 5, 0.33);
-        products[2] = new Beverage("Sprite", 2.00, 5, 0.25);
-        products[3] = new Beverage("Fuse Tea", 1.50, 5, 0.25);
-        products[4] = new Beverage("Bonaqua", 1.09, 5, 0.5);
+        List<Beverage> products = new ArrayList<>(5);
+        products.set(0, new Beverage("Coca-Cola", 2.00, 5, 0.33));
+        products.set(1, new Beverage("Fanta", 2.00, 5, 0.33));
+        products.set(2, new Beverage("Sprite", 2.00, 5, 0.25));
+        products.set(3, new Beverage("Fuse Tea", 1.50, 5, 0.25));
+        products.set(4, new Beverage("Bonaqua", 1.09, 5, 0.5));
         this.productStorage = new ProductStorage<>(products);
     }
 
@@ -30,7 +33,7 @@ public class DrinkAutomat {
     }
 
     private void showProducts() {
-        userDisplay.print(productStorage.getProducts());
+        userDisplay.print(productStorage.getProducts().toArray(Product[]::new));
     }
 
     private Beverage selectProduct() {
