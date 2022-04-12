@@ -1,6 +1,8 @@
 package org.drink.machine;
 
-public class Product implements Countable {
+import java.io.Serializable;
+
+public class Product implements Countable, Serializable {
 
     final private String name;
     final private double price;

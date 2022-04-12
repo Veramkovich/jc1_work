@@ -49,7 +49,12 @@ public class SweetsAutomat {
     }
 
     private boolean giveProduct(Sweet selectedProduct) {
-        boolean result = productStorage.removeProduct(selectedProduct);
+        boolean result = false;
+        try {
+            result = productStorage.removeProduct(selectedProduct);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         userDisplay.printPurchaseResult(result);
         return result;
     }

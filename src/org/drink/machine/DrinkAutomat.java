@@ -43,6 +43,9 @@ public class DrinkAutomat {
     }
 
     private boolean payProduct(Beverage selectedProduct) {
+        if (selectedProduct == null) {
+            throw new IllegalArgumentException("Selected product cannot be null");
+        }
         String productName = selectedProduct.getName();
         double price = selectedProduct.getPrice();
         userDisplay.printPaymentPrompt(productName, price);

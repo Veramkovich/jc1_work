@@ -2,7 +2,9 @@ package org.drink.machine;
 
 public class Beverage extends Product {
 
-    private double volume;
+    public static int number = 1;
+
+    private transient double volume;
 
     public Beverage(String name, double price) {
         super(name, price);
