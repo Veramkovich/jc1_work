@@ -8,9 +8,12 @@ import java.util.Map;
 public class Clinic {
 
     private Map<String, Card> registry;
+    private Doctor doctor;
 
     public Clinic() {
         registry = new HashMap<>();
+        doctor = new Doctor();
+        doctor.setFree(true);
     }
 
     public static void main(String[] args) {
@@ -19,14 +22,8 @@ public class Clinic {
         for (int i = 1; i <= 10; i++) {
             Patient patient = new Patient(clinic, "Patient " + i);
             patients.add(patient);
-        }
-        for (Patient patient : patients) {
             new Thread(patient, patient.getFio()).start();
         }
-        for (Patient patient : patients) {
-            System.out.println(patient.getFio() + " has spravka " + patient.getSpravka());
-        }
-
     }
 
     public Card takeCard(String fio) {
@@ -47,13 +44,25 @@ public class Clinic {
     }
 
     private void enter() throws InterruptedException {
-        System.out.println("Enter patient: " + Thread.currentThread().getName());
-        Thread.sleep(2000);
+        synchronized (doctor) {
+            while (!doctor.isFree()) {
+                doctor.wait();
+            }
+            doctor.setFree(false);
+
+            System.out.println("Enter patient: " + Thread.currentThread().getName());
+            Thread.sleep(2000);
+
+        }
     }
 
     private void exit() throws InterruptedException {
-        Thread.sleep(1000);
-        System.out.println("Exit patient: " + Thread.currentThread().getName());
+        synchronized (doctor) {
+            Thread.sleep(1000);
+            System.out.println("Exit patient: " + Thread.currentThread().getName());
+            doctor.setFree(true);
+            doctor.notifyAll();
+        }
     }
 
     public void putStamp(Spravka spravka) {
@@ -85,6 +94,7 @@ class Patient implements Runnable {
         Card card = clinic.takeCard(fio);
         spravka = clinic.visitDoctor(card);
         clinic.putStamp(spravka);
+        System.out.println(fio + " has spravka " + spravka);
     }
 
 }
@@ -128,5 +138,17 @@ class Spravka {
         return "Spravka{" +
                 "isStampted=" + isStampted +
                 '}';
+    }
+}
+
+class Doctor {
+    private boolean free;
+
+    public boolean isFree() {
+        return free;
+    }
+
+    public void setFree(boolean free) {
+        this.free = free;
     }
 }
