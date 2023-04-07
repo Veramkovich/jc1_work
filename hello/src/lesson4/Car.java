@@ -11,6 +11,10 @@ public class Car {
     Color color;
     String model;
 
+    public int compareTo(Car car) {
+        return (color.getRGB() - car.color.getRGB())
+                + model.compareTo(car.model);
+    }
 
     public static void main(String[] args) {
         Car bmwX6, audiA8;
