@@ -3,19 +3,25 @@ package lesson7;
 //import java.util.Scanner;
 
 
-public class Automat {
+public class Automat<T extends Product> {
 
-     final Product[] products = {
-            new Product("Lays", 5),
-            new Product("Snickers", 3),
-            new Product("Bonaqua", 7),
-            new Product("Oreo", 4),
-            new Product("Orbit", 6)
-    };
+     /*final T[] products = {
+            new T("Lays", 5),
+            new T("Snickers", 3),
+            new T("Bonaqua", 7),
+            new T("Oreo", 4),
+            new T("Orbit", 6)
+    };*/
+
+    private T[] products;
+
+    public void setProducts(T[] products) {
+        this.products = products;
+    }
 
     public void printMainMenu() {
         int num = 1;
-        for (Product product : products) {
+        for (T product : products) {
             if (product.count > 0) {
                 System.out.println(num + ": " + product.name + " [" + product.count + "]");
             }
@@ -32,7 +38,7 @@ public class Automat {
             num = scanner.nextInt();
             isNumberCorrect = num >= 1 && num <= products.length;
             if (isNumberCorrect) {
-                Product product = products[num - 1];
+                T product = products[num - 1];
                 isNumberCorrect = product.count > 0;
             }
             if (!isNumberCorrect) {
@@ -46,7 +52,7 @@ public class Automat {
     }
 
     public void takeProduct(int productNum) {
-        Product product = products[productNum - 1];
+        T product = products[productNum - 1];
         product.count--;
         System.out.println("Please take your product " + product.name);
         System.out.println("Remain " + product.count + " of " + product.name);
