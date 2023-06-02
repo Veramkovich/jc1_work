@@ -18,7 +18,7 @@ public class SAXParserExample {
             SAXParserFactory factory = SAXParserFactory.newDefaultInstance();
             SAXParser parser = factory.newSAXParser();
             parser.parse(
-                    new File("c:/work/hello/resources/test.xml"),
+                    new File("resources/test.xml"),
                     new MyHandler()
             );
 

@@ -18,7 +18,7 @@ public class DomParserExample {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder parser = factory.newDocumentBuilder();
 
-            final Document document = parser.parse(new File("c:/work/hello/resources/test.xml"));
+            final Document document = parser.parse(new File("resources/test.xml"));
 
             final NodeList childNodes = document.getChildNodes();
             for (int i = 0; i < childNodes.getLength(); i++) {
